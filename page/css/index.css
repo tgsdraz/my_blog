@@ -1,0 +1,122 @@
+
+.article {
+    width: 100%;
+    
+}
+.article li {
+    width: 100%;
+    list-style: none;
+    margin-bottom: 10px;
+}
+.article-top {
+    width: 100%;
+    height: 150px;
+}
+/* .article-top img {
+    width: 30%;
+    height: 150px;
+    margin-right: 20px;
+    vertical-align: top;
+} */
+.article-top .article-detail {
+    display: inline-block;
+    width: 100%;
+    height: 150px;
+}
+.title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 20px;
+    line-height: 20px;
+}
+.title .type {
+    padding: 5px;
+    background: #00a2ff;
+    position: relative;
+    text-align: center;
+    margin-right: 10px;
+}
+.title .type::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0px;
+    height: 0px;
+    border-top: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-left: 3px solid #00a2ff;
+}
+.title .type a {
+    color: #fff;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold
+}
+.title1 a{
+    font-size: 18px;
+    color: #888888;
+    text-decoration: none;
+}
+.title1 a:hover {
+    color: #00a2ff
+}
+.content {
+    height: 130px;
+    padding: 10px 0 0 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-size: 15px;
+}
+.tags {
+    margin-top: 20px;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.tags .fa {
+    font-size: 12px;
+    margin-right: 5px;
+}
+.tags span {
+    font-size: 12px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.more {
+    float: right;
+}
+.more a {
+    text-decoration: none;
+    color: #000
+}
+.more .fa {
+    margin-left: 5px;
+}
+.list {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+.list .order {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    border: 1px solid #888888;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.list .order:hover {
+    background: #00a2ff;
+    color: #fff;
+}
+.list .sty {
+    background: #ff4400;
+    color: #fff;
+    border: 1px solid #ff8800
+}

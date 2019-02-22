@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>糖小生个人博客-糖小生</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/article.css">
+    <script src="https://cdn.bootcss.com/vue/2.6.4/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="top">
+            <div class="menus">
+                <ul class="menu">
+                    <li><a href="/">首页</a></li>
+                    <!-- <li><a href="#">前端</a></li> -->
+                    <li class="article-type" id="articleType">
+                        <a href="#">文章<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="type-list">
+                            <li class="type" v-for="type in types" @click="getArticles(type.type,page1,pageSize1)">{{type.text}}</li>
+                        </ul>
+                    </li>
+                    <li><a href="/bbs.html">留言</a></li>
+                    <li><a href="/regedit.html">注册</a></li>
+                </ul>
+            </div>
+            <h1>糖小生</h1>
+            <h2>糖小生个人博客</h2>
+        </header>
+        <div class="container">
+            <div class="left" id="blogArticle">
+                <h2 class="blog-title">{{title}}</h2>
+                <div class="details">
+                    <span class="date"><i class="fa fa-calendar" aria-hidden="true"></i>{{ctime}}</span>
+                    <span class="comment1"><i class="fa fa-commenting-o" aria-hidden="true"></i>{{commentCount}}条评论</span>
+                    <span class="has-read"><i class="fa fa-eye" aria-hidden="true"></i>{{hasRead}}人阅读</span>
+                    <span class="has-do"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>{{hasDo}}人点赞</span>
+                </div>
+                <div class="content" v-html="content"></div>
+                <div class="btns">
+                    <span class="has-do" @click="doClick(id)"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>点赞</span>
+                </div>
+                <div class="tags">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span class="blog-tag" v-for="tag in tags">
+                        {{tag}}
+                    </span>
+                </div>
+                <div class="operate">
+                    <a class="prev" href="javascript:void(0)" @click="prev">上一篇</a>
+                    <a class="next" href="javascript:void(0)" @click="next">下一篇</a>
+                </div>
+                <div class="comment">
+                    <ul class="comment-list">
+                        <li class="single-comment" v-for="comment in comments">
+                            <img src="./img/head.jpg" alt="">
+                            <div class="comment-detail">
+                                <p class="name">{{comment.parent?comment.replys:comment.alise}}</p>
+                                <p class="time"><i class="fa fa-clock-o" aria-hidden="true"></i>{{comment.ctime}}</p>
+                                <p class="comment-cont">{{comment.comment}}</p>
+                                <a @click="reply(comment.id,comment.alise)">回复</a>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="store-comment" id="store-comment">
+                        <textarea name="" id="comment" cols="30" rows="10" placeholder="客官请留步,有事您说话..."></textarea>
+                        昵称:<input type="text" id="aliseName">
+                        <br>
+                        <button class="bbs" @click="store(id)">留言</button>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="login">
+                    <h3 class="welcome">用户您好，请登录！</h3>
+                    <div class="btns">
+                        <a href="/login.html" class="btn">登录</a>
+                        <a href="/regedit.html" class="btn">注册</a>
+                    </div>
+                </div>
+                <div class="tag-list" id="tag">
+                    <h3>标签聚合</h3>
+                    <div class="tag">
+                        <span class="tag-single" v-for="tag in tagList" :style="tag.style">
+                            {{tag.tag}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/tool.js"></script>
+    <!-- <script src="./js/index.js"></script> -->
+    <script src="./js/article.js"></script>
+    <script src="./js/base.js"></script>
+</body>
+
+</html>

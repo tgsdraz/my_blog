@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+
+<body>
+    <input type="file" id="img" class="input-file">
+    <input type="submit" value="提交" id="btn">
+    <script>
+        let formdata = new FormData()
+        let fileInput = document.querySelector('.input-file');
+        document.getElementById('btn').onclick = function () {
+            let files = fileInput.files
+            console.log(files)
+            if (files.length > 0) {
+                [].slice.call(files).forEach(function (value, index) {
+                    console.log(value, index)
+                    formdata.append('img' + index, value, value.name) //遍历添加数据
+                })
+            } else {
+                alert('请先选择图片');
+                return false;
+            }
+            $.ajax({
+                url: '/upload',
+                type: 'post',
+                data: formdata,
+                processData:false,
+                contentType:false,
+                mimeType: "multipart/form-data",
+                success: (data) => {
+                    console.log(data)
+                }
+            })
+        }
+        console.log($)
+
+        // let formData = new FormData(); //创建formData对象
+
+        //判断数据 若有 则添加数据
+    </script>
+</body>
+
+</html>

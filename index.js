@@ -1,0 +1,26 @@
+let express = require('express')
+let globalConfig = require('./config')
+let pathMap = require('./loader')
+let app = new express()
+
+app.use(express.static('./page/'))
+app.post('/regedit_user',pathMap.get('regeditUser'))
+app.get('/login',pathMap.get('login'))
+app.get('/adminLogin',pathMap.get('adminLogin'))
+app.post('/upload',pathMap.get('upload'))
+app.get('/getAll',pathMap.get('getAll'))
+app.get('/getCount',pathMap.get('getCount'))
+app.get('/getTags',pathMap.get('getTags'))
+app.get('/getArticles',pathMap.get('getArticles'))
+app.get('/getCountByType',pathMap.get('getCountByType'))
+app.get('/getBlogArticle',pathMap.get('getArticleById'))
+app.post('/updateBlogDo',pathMap.get('updateBlogDo'))
+app.post('/updateRead',pathMap.get('updateBlogRead'))
+app.get('/getAllId',pathMap.get('getAllId'))
+app.post('/insertComments',pathMap.get('insertCommentsById'))
+app.get('/getComments',pathMap.get('queryCommentById'))
+app.get('/getCommentsCount',pathMap.get('queryCommentCount'))
+
+
+
+app.listen(globalConfig.port)

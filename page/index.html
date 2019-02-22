@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>糖小生个人博客-糖小生</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.bootcss.com/vue/2.6.4/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="top">
+            <div class="menus">
+                <ul class="menu">
+                    <li><a href="/">首页</a></li>
+                    <!-- <li><a href="#">前端</a></li> -->
+                    <li class="article-type" id="articleType">
+                        <a href="#">文章<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="type-list">
+                            <li class="type" v-for="type in types" @click="getArticles(type.type,page1,pageSize1)">{{type.text}}</li>
+                        </ul>
+                    </li>
+                    <li><a href="/bbs.html">留言</a></li>
+                    <li><a href="/regedit.html">注册</a></li>
+                </ul>
+            </div>
+            <h1>糖小生</h1>
+            <h2>糖小生个人博客</h2>
+        </header>
+        <div class="container">
+            <div class="left" id="articleList">
+                <ul class="article">
+                    <li v-for="article in articleList">
+                        <div class="article-top">
+                            <!-- <img src="./img/bj.jpg" alt=""> -->
+                            <div class="article-detail">
+                                <p class="title">
+                                    <span class="type"><a href="#">{{article.type}}</a></span>
+                                    <span class="title1"><a :href="article.link">{{article.title}}</a></span>
+                                </p>
+                                <p class="content" v-html="article.content"></p>
+                            </div>
+                        </div>
+                        <div class="tags">
+                            <span class="date"><i class="fa fa-calendar" aria-hidden="true"></i>{{article.ctime}}</span>
+                            <span class="comment"><i class="fa fa-commenting-o" aria-hidden="true"></i>{{article.comment_count}}条评论</span>
+                            <span class="has-read"><i class="fa fa-eye" aria-hidden="true"></i>{{article.has_read}}人阅读</span>
+                            <span class="has-do"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>{{article.has_do}}人点赞</span>
+                            <span class="more"><a href="#">阅读全文<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a></span>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list">
+                    <li class="order" v-for="single in orders" @click="getData(single.text,single.type,pageSize)" :class="{sty:single.text == page}">
+                        {{single.text}}
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="login">
+                    <h3 class="welcome">用户您好，请登录！</h3>
+                    <div class="btns">
+                        <a href="/login.html" class="btn">登录</a>
+                        <a href="/regedit.html" class="btn">注册</a>
+                    </div>
+                </div>
+                <div class="tag-list" id="tag">
+                    <h3>标签聚合</h3>
+                    <div class="tag">
+                        <span class="tag-single" v-for="tag in tagList" :style="tag.style">
+                            {{tag.tag}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+    <script src="./js/base.js"></script>
+</body>
+</html>
